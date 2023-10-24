@@ -7,9 +7,9 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#6366f1",
+    "light": "#a5b4fc",
+    "dark": "#3730a3",
     "anchors": {
       "from": "#0D9373",
       "to": "#07C983"
@@ -26,10 +26,7 @@
     "url": "https://app.slauth.io"
   },
   "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
+   
   ],
   "anchors": [
     {
