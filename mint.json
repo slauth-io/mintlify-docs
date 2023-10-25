@@ -45,7 +45,8 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "how-it-works"
+        "how-it-works",
+        "support"
       ]
     }
   ],
