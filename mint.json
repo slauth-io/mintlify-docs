@@ -1,15 +1,15 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Slauth Docu",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#6366f1",
-    "light": "#a5b4fc",
-    "dark": "#3730a3",
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373",
     "anchors": {
       "from": "#0D9373",
       "to": "#07C983"
@@ -30,9 +30,9 @@
   ],
   "anchors": [
     {
-      "name": "Home",
-      "icon": "home",
-      "url": "https://slauth.io"
+      "name": "Documentation",
+      "icon": "book-open-cover",
+      "url": "https://mintlify.com/docs"
     },
     {
       "name": "Community",
@@ -80,8 +80,7 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/slauth-io",
+    "linkedin": "https://www.linkedin.com/company/slauth-io"
   }
 }
