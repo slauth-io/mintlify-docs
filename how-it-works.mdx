@@ -1,0 +1,70 @@
+---
+title: 'How it works'
+description: 'Here is how Slauth generates least privaledged policies for your service.'
+---
+
+## Overview
+
+Slauth is a powerful tool designed to generate AWS IAM Least Privileged Policies for Service-based identities. 
+It streamlines the process of managing and optimizing AWS roles and policies, ensuring your services operate under the principle of least privilege.
+
+## Prerequisites
+
+Before you can start using Slauth, there are a few prerequisites:
+
+- **AWS Deployment**: Your service needs to be deployed on AWS. We are actively working on adding support for Azure and GCP, so stay tuned for updates.
+
+- **GitHub Repository**: Your code should be hosted on GitHub. We understand the need for supporting other Git-based hosting providers like GitLab, and we have plans to include them in our future releases.
+
+- **Code Compatibility**: Currently, we do not support Terraform code. However, we recognize the importance of Terraform in infrastructure management and have plans to support it in the future.
+
+Please ensure you meet these prerequisites before proceeding with Slauth.
+
+## Supported Languages and Stacks
+
+Slauth is designed to be as inclusive as possible. We are proud to announce that we support **all languages and frameworks**. Whether you're working with Python, Java, Node.js, Ruby, or any other language, you can use Slauth to optimize your AWS IAM policies.
+
+No matter what framework your service is built on - be it Express.js, Django, Rails, Spring Boot, or others - Slauth is capable of scanning your service code and providing valuable policy suggestions.
+
+Our goal is to make Slauth a universally applicable tool, helping all developers regardless of their tech stack.
+
+
+## How it Works
+
+Slauth operates in three main steps:
+
+### Scanning Service Code
+
+1. The first step in the Slauth process involves scanning your service code. This is done in two sub-steps:
+
+  - **Connect Your GitHub Account**: To get started, you'll need to connect your GitHub account with Slauth. This allows Slauth to access your repositories and scan your service code. Rest assured, Slauth respects your privacy and only accesses the repositories necessary for generating IAM policies.
+
+  - **Import Your Repository**: Once your GitHub account is connected, you'll be asked to import the repository that contains your service code. Simply select the repository from the list, and Slauth will start scanning the service code.
+
+By scanning your service code, Slauth can understand the specific requirements and operations of your service. This information is crucial for generating accurate and efficient IAM policies.
+
+
+2. **Scanning AWS Roles and Policies**: Next, Slauth scans the existing AWS roles and policies associated with your service. This provides a baseline from which it can work to optimize your policies.
+
+3. **Policy Suggestions**: Finally, Slauth sends the scanned code and policies to a Language Learning Model (LLM) like OpenAI. The LLM then provides suggestions on three key areas:
+
+    - **Policies to Add**: These are new policies that your service should have for optimal operation and security.
+    
+    - **Policies to Remove**: These are existing policies that are no longer needed or could pose a security risk.
+    
+    - **Policies to Change**: These are existing policies that should be modified to better suit your service's needs.
+
+By following these steps, Slauth helps you maintain secure, efficient, and least privileged access for your AWS services.
+
+## Getting Started
+
+(Here you can provide information on how users can get started with Slauth)
+
+## FAQ
+
+(Here you can provide answers to frequently asked questions)
+
+## Support
+
+(Here you can provide support contact information)
+
