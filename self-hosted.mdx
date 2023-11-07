@@ -69,6 +69,31 @@ After you’ve created the GitHub app you will need to copy some information spe
         2. Move the key in a directory called `dev-secrets` at the **root** of where you have the docker compose files for Slauth. This will ensure the private key is copied to the running container and used for your deployment.
     5. Set `GITHUB_INSTALL_URL` to `https://github.com/apps/<your-app-name>/installations/new`
 
+## AWS Integration (optional)
+
+In order for Slauth to read your currently deployed AWS IAM policies, it assumes a read-only role that is created during the AWS Account integration process.
+
+To assume this role, you will need to set the following environment variables:
+
+- Access keys of the user who will assume the role to read your IAM policies and identities.
+- AWS Account ID of that user.
+
+The AWS Account ID is only required to add a principal statement in the CloudFormation template. This statement allows only identities from that specific AWS account to assume the role on the AWS account you will be integrating with on Slauth. This feature enables you to integrate with different AWS Accounts on your Slauth deployment.
+
+```jsx
+AWS_ACCESS_KEY_ID=change-this-to-your-aws-credentials
+AWS_SECRET_ACCESS_KEY=change-this-to-your-aws-credentials
+AWS_ACCOUNT_ID=change-this-to-your-aws-account-id
+AWS_DEFAULT_REGION=change-this-to-your-region
+```
+
+## Code Storage
+
+Whenever you import a repository into Slauth, the code will be stored in a minio bucket in your container. Set the following variables to give a name to the bucket where you want the code to be stored (by default it is code-imports):
+
+```
+AWS_CODE_IMPORT_BUCKET=code-imports
+```
 
 ### Install 
 
