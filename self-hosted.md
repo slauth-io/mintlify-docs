@@ -1,0 +1,83 @@
+---
+title: 'Self Host Slauth'
+description: 'Self Host Slauth on your own infrastructure'
+---
+
+### Clone GitHub Repo
+
+```bash
+git clone https://github.com/slauth-io/self-hosted
+# copy config file
+cp config.example.env config.env
+```
+
+### Create random secrets
+
+Please replace all the secrets in the config file `config.env` with random strings. 
+
+
+### Create GitHub App
+
+
+The [slauth.io](http://slauth.io/) GitHub app is needed so the application can access your repository contents for scanning.
+
+Follow the steps below to create it:
+
+1. Go to the settings page of the organisation/account where you want to create the app
+2. On the left side menu, expand developer settings and then click on GitHub Apps
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/828c5195-306f-43dd-a002-3bf3fc13f742/a09723f5-e0eb-4337-a443-542f563d1097/Untitled.png)
+    
+3. To create a new App, click on **“New GitHub App”** at the top of the page
+4. In this app we only require a couple of settings to be a certain way, everything else is optional and can by customised by you (e.g. name, description)
+    1. **Required 1**: Set the **“Homepage URL”** to `https://<your.slauth.domain>/accounts`
+    2. **Required 2**: Add a **“Callback URL”** to `http://<your.slauth.domain>/dashboard/integrations/github-confirm`
+    3. **Required 3**: Check the **“Request user authorization (OAuth) during installation”** checkbox
+    4. **Required 4**: In the **“Repository Permissions”** tab, add **“read-only”** to **“Contents”** and **“Metadata”**
+        
+        ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/828c5195-306f-43dd-a002-3bf3fc13f742/119c0425-cd72-4457-888b-ccf7cff24b72/Untitled.png)
+        
+    5. On the last step of the GitHub App creation, you’ll be able to select wether you want the app to be:
+        1.  available across GitHub Accounts/Organisations ( select this if you want to install the app on separate Accounts/Organisations ) 
+        2. available only for the Account that owns the app.
+
+5. Click **“Create GitHub App”** at the bottom
+
+
+#### Post-Creation Setup
+
+After you’ve created the GitHub app you will need to copy some information specific to the app that you just created. This is what enables your deployment of Slauth to use that GitHub App.
+
+1. Go to the settings page of the organisation/account where you created the app
+2. On the left side menu, expand developer settings and then click on GitHub Apps
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/828c5195-306f-43dd-a002-3bf3fc13f742/71a91fd5-d45b-463f-8dd1-838ca3d621f2/Untitled.png)
+    
+3. Click the **“Edit”** button for your Slauth App
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/828c5195-306f-43dd-a002-3bf3fc13f742/5e52cce4-ead1-494e-a4a2-c7e427c6842d/Untitled.png)
+    
+4. In the General tab:
+    1. Copy your **App ID** and set it to the `GITHUB_APP_ID` environment variable of your Slauth deployment
+    2. Copy your **Client ID** and set it to the `GITHUB_CLIENT_ID` environment variable of your Slauth deployment
+        
+        ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/828c5195-306f-43dd-a002-3bf3fc13f742/ad75054c-4244-41a3-9fe2-51220d67576f/Untitled.png)
+        
+    3. Click on **“Generate a new client secret”**. Once the secret is created, copy it and set it to the `GITHUB_CLIENT_SECRET` environment variable of your Slauth deployment
+    4. Scroll to the bottom of the settings page, click on **“Generate a private key”**. GitHub will automatically download the private key for you.
+        1. Rename the key to `gh-app-pk.pem`
+        2. Move the key in a directory called `dev-secrets` at the **root** of where you have the docker compose files for Slauth. This will ensure the private key is copied to the running container and used for your deployment.
+    5. Set `GITHUB_INSTALL_URL` to `https://github.com/apps/<your-app-name>/installations/new`
+
+
+### Install 
+
+Run install this will make sure all the required files are in place and the docker containers are running. 
+
+```bash
+bash install.sh
+```
+
+### Slauth is up and running! 
+
+You can now access the dashboard at `http://localhost`. You need to create a new account to get started. 
